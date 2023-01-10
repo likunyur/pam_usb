@@ -72,7 +72,7 @@ int pam_sm_authenticate(pam_handle_t *pamh, int flags,
 	if (pam_get_item(pamh, PAM_TTY,
 				(const void **)(const void *)&tty) == PAM_SUCCESS)
 	{
-		if (tty && !strcmp(tty, "ssh"))
+		if (tty && (!strcmp(tty, "ssh") && !strcmp(tty, "sshd")))
 		{
 			log_debug("SSH Authentication, aborting.\n");
 			return (PAM_AUTH_ERR);
